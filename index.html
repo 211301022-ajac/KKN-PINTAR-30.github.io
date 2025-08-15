@@ -1,0 +1,854 @@
+
+<!-- <img src="path-to-your-logo.png" alt="Logo UNUGIRI" class="w-12 h-12 object-contain"> -->
+   <!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita Acara KKN PINTAR Kelompok 30 - Desa Pejok</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-shadow { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .text-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center">
+                    <!-- Navigation Logo -->
+                    <div class="mr-4">
+                        <img src="logokkn30.png" alt="Logo KKN PINTAR UNUGIRI" class="w-12 h-12 object-contain rounded-lg shadow-sm">
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-800">KKN PINTAR</h2>
+                        <p class="text-sm text-gray-600">UNUGIRI Kelompok 30</p>
+                    </div>
+                </div>
+                
+                <!-- Menu Items -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" onclick="filterNews('all')" id="menu-all" class="text-blue-600 font-semibold border-b-2 border-blue-600 pb-1">Semua Berita</a>
+                    <a href="#" onclick="filterNews('kesehatan')" id="menu-kesehatan" class="text-gray-600 hover:text-blue-600 transition-colors">Kesehatan</a>
+                    <a href="#" onclick="filterNews('pendidikan')" id="menu-pendidikan" class="text-gray-600 hover:text-blue-600 transition-colors">Pendidikan</a>
+                    <a href="#" onclick="filterNews('pemberdayaan')" id="menu-pemberdayaan" class="text-gray-600 hover:text-blue-600 transition-colors">Pemberdayaan</a>
+                    <a href="#" onclick="filterNews('lingkungan')" id="menu-lingkungan" class="text-gray-600 hover:text-blue-600 transition-colors">Lingkungan</a>
+                    <a href="#" onclick="filterNews('sosial')" id="menu-sosial" class="text-gray-600 hover:text-blue-600 transition-colors">Sosial</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden p-2" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-2">
+                    <a href="#" onclick="filterNews('all')" id="mobile-menu-all" class="text-blue-600 font-semibold py-2">Semua Berita</a>
+                    <a href="#" onclick="filterNews('kesehatan')" id="mobile-menu-kesehatan" class="text-gray-600 hover:text-blue-600 py-2">Kesehatan</a>
+                    <a href="#" onclick="filterNews('pendidikan')" id="mobile-menu-pendidikan" class="text-gray-600 hover:text-blue-600 py-2">Pendidikan</a>
+                    <a href="#" onclick="filterNews('pemberdayaan')" id="mobile-menu-pemberdayaan" class="text-gray-600 hover:text-blue-600 py-2">Pemberdayaan</a>
+                    <a href="#" onclick="filterNews('lingkungan')" id="mobile-menu-lingkungan" class="text-gray-600 hover:text-blue-600 py-2">Lingkungan</a>
+                    <a href="#" onclick="filterNews('sosial')" id="mobile-menu-sosial" class="text-gray-600 hover:text-blue-600 py-2">Sosial</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative overflow-hidden">
+        <!-- Background with pattern -->
+        <div class="absolute inset-0 gradient-bg"></div>
+        <div class="absolute inset-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <defs>
+                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="white" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100" height="100" fill="url(#grid)" />
+            </svg>
+        </div>
+        
+        <div class="relative z-10 container mx-auto px-6 py-16">
+            <div class="text-center">
+                <!-- Main Title -->
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-2 text-white drop-shadow-lg">BERITA ACARA</h1>
+                    <div class="h-1 w-24 bg-white/60 rounded-full mx-auto"></div>
+                </div>
+
+                <!-- University Info -->
+                <div class="bg-white/15 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto shadow-xl border border-white/20">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="bg-white/20 p-2 rounded-lg mr-3">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white">KKN PINTAR UNUGIRI</h2>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-4 text-white">
+                        <div class="flex items-center justify-center md:justify-start">
+                            <svg class="w-5 h-5 mr-2 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-semibold">Kelompok 30</span>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-start">
+                            <svg class="w-5 h-5 mr-2 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="font-semibold">Desa Pejok</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t border-white/20">
+                        <p class="text-white/90 font-medium">Kedungadem, Bojonegoro</p>
+                        <p class="text-white/80 text-sm mt-1">Universitas Nahdlatul Ulama Sunan Giri</p>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <!-- Decorative elements -->
+        <div class="absolute top-10 left-10 w-20 h-20 bg-white/5 rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full"></div>
+        <div class="absolute top-1/2 right-20 w-16 h-16 bg-white/5 rounded-full"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <!-- News List Section -->
+        <div id="newsList" class="max-w-4xl mx-auto mb-12">
+            <h2 id="sectionTitle" class="text-2xl font-bold text-gray-800 mb-6">Berita Terbaru</h2>
+            <div id="newsContainer" class="space-y-6">
+                <!-- News items will be dynamically added here -->
+            </div>
+        </div>
+
+        <!-- Category Sections (shown when no news in category) -->
+        <div id="categorySection" class="hidden max-w-4xl mx-auto mb-12">
+            <!-- Kesehatan Section -->
+            <div id="kesehatanSection" class="hidden">
+                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-green-800">Program Kesehatan</h2>
+                    </div>
+                    <p class="text-green-700 text-lg mb-6">KKN PINTAR UNUGIRI Kelompok 30 berkomitmen meningkatkan derajat kesehatan masyarakat Desa Pejok melalui berbagai program kesehatan yang inovatif dan berkelanjutan.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-green-800 mb-3">🏥 Posyandu & ILP</h3>
+                            <p class="text-gray-600">Intervensi Lapangan Posyandu untuk pemeriksaan kesehatan rutin dan pembagian PMT bergizi</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-green-800 mb-3">💊 Edukasi Kesehatan</h3>
+                            <p class="text-gray-600">Penyuluhan kesehatan tentang pola hidup sehat, pencegahan penyakit, dan gizi seimbang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pendidikan Section -->
+            <div id="pendidikanSection" class="hidden">
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-blue-800">Program Pendidikan</h2>
+                    </div>
+                    <p class="text-blue-700 text-lg mb-6">Meningkatkan kualitas pendidikan dan literasi masyarakat Desa Pejok melalui program-program pendidikan yang kreatif dan inovatif.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-blue-800 mb-3">📚 Bimbingan Belajar</h3>
+                            <p class="text-gray-600">Program bimbingan belajar untuk anak-anak sekolah dan persiapan ujian</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-blue-800 mb-3">💻 Literasi Digital</h3>
+                            <p class="text-gray-600">Pelatihan penggunaan teknologi dan media digital untuk masyarakat</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pemberdayaan Section -->
+            <div id="pemberdayaanSection" class="hidden">
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-purple-800">Program Pemberdayaan</h2>
+                    </div>
+                    <p class="text-purple-700 text-lg mb-6">Memberdayakan masyarakat Desa Pejok melalui pelatihan keterampilan dan pengembangan ekonomi kreatif untuk meningkatkan kesejahteraan.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-purple-800 mb-3">🎨 Pelatihan Kerajinan</h3>
+                            <p class="text-gray-600">Workshop pembuatan kerajinan tangan dan produk kreatif untuk ibu-ibu PKK</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-purple-800 mb-3">💼 Kewirausahaan</h3>
+                            <p class="text-gray-600">Pelatihan kewirausahaan dan manajemen usaha kecil menengah</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lingkungan Section -->
+            <div id="lingkunganSection" class="hidden">
+                <div class="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-emerald-100 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-emerald-800">Program Lingkungan</h2>
+                    </div>
+                    <p class="text-emerald-700 text-lg mb-6">Menjaga kelestarian lingkungan Desa Pejok melalui program-program ramah lingkungan dan edukasi konservasi alam.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-emerald-800 mb-3">🌱 Penghijauan</h3>
+                            <p class="text-gray-600">Program penanaman pohon dan pembuatan taman untuk menjaga kelestarian lingkungan</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-emerald-800 mb-3">♻️ Pengelolaan Sampah</h3>
+                            <p class="text-gray-600">Edukasi pengelolaan sampah dan program daur ulang untuk lingkungan yang bersih</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sosial Section -->
+            <div id="sosialSection" class="hidden">
+                <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl p-8 mb-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-orange-100 p-3 rounded-full mr-4">
+                            <svg class="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-orange-800">Program Sosial</h2>
+                    </div>
+                    <p class="text-orange-700 text-lg mb-6">Membangun solidaritas dan kepedulian sosial masyarakat Desa Pejok melalui berbagai kegiatan sosial kemasyarakatan.</p>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-orange-800 mb-3">🤝 Gotong Royong</h3>
+                            <p class="text-gray-600">Kegiatan gotong royong dan kerja bakti untuk mempererat tali silaturahmi warga</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm">
+                            <h3 class="font-semibold text-orange-800 mb-3">🎉 Kegiatan Budaya</h3>
+                            <p class="text-gray-600">Penyelenggaraan acara budaya dan tradisi untuk melestarikan kearifan lokal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- News Article Card -->
+        <article class="bg-white rounded-2xl card-shadow overflow-hidden max-w-4xl mx-auto">
+            <!-- Article Header -->
+            <div class="p-8 border-b border-gray-100">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 font-medium">Tanggal Kegiatan</p>
+                        <p class="text-lg font-semibold text-gray-800">13 Agustus 2025</p>
+                    </div>
+                </div>
+                
+                <h1 class="text-3xl font-bold text-gray-900 leading-tight mb-4">
+                    Pelaksanaan Intervensi Lapangan Posyandu (ILP) di Dusun Bronjong Bersama KKN PINTAR UNUGIRI Kelompok 30 Desa Pejok, Kedungadem, Bojonegoro
+                </h1>
+                
+                <div class="flex items-center text-sm text-gray-600">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                    </svg>
+                    Dusun Bronjong, Desa Pejok, Kedungadem, Bojonegoro
+                </div>
+            </div>
+
+            <!-- Activity Images -->
+            <div class="p-8 border-b border-gray-100">
+                <div class="mb-8">
+                    <!-- Main Activity Photo -->
+                    <div class="relative overflow-hidden rounded-xl shadow-lg max-w-2xl mx-auto">
+                        <img src="dokumentasiilp.jpeg" alt="Dokumentasi Kegiatan ILP Posyandu di Dusun Bronjong" class="w-full h-80 object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6">
+                            <h3 class="text-white font-bold text-xl mb-2">Kegiatan ILP Posyandu</h3>
+                            <p class="text-white/90 text-sm">Dokumentasi kegiatan Intervensi Lapangan Posyandu bersama mahasiswa KKN PINTAR UNUGIRI dan warga Dusun Bronjong</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Article Content -->
+            <div class="p-8">
+                <div class="prose prose-lg max-w-none">
+                    <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                        <strong>Pejok, 13 Agustus 2025</strong> – Dusun Bronjong, Desa Pejok, Kecamatan Kedungadem, menjadi lokasi pelaksanaan Intervensi Lapangan Posyandu (ILP) yang digelar bersama Kelompok 30 KKN PINTAR Universitas Nahdlatul Ulama Sunan Giri (UNUGIRI) Bojonegoro. Kegiatan ini berlangsung meriah dan penuh semangat, melibatkan para kader posyandu, masyarakat setempat, serta mahasiswa KKN dalam rangka meningkatkan derajat kesehatan warga.
+                    </p>
+
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Acara ILP diawali dengan registrasi peserta yang didominasi oleh ibu-ibu PKK dan warga lanjut usia. Para mahasiswa KKN berperan aktif membantu proses pendaftaran, pengecekan administrasi, hingga memberikan arahan jalannya kegiatan. Pelayanan posyandu meliputi pemeriksaan kesehatan, penimbangan berat badan, pengecekan tekanan darah, dan edukasi kesehatan mengenai pencegahan penyakit.
+                    </p>
+
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Selain itu, dilakukan pula pembagian makanan tambahan (PMT) bergizi untuk warga, yang diharapkan dapat membantu menjaga kesehatan dan meningkatkan asupan gizi. Edukasi kesehatan yang diberikan mencakup pola makan seimbang, pentingnya aktivitas fisik, dan pemeriksaan kesehatan rutin sebagai langkah deteksi dini.
+                    </p>
+
+                    <!-- Quote Section -->
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 my-8 rounded-r-lg">
+                        <p class="text-gray-700 italic mb-3">
+                            "Kami senang bisa membantu warga dan belajar langsung di lapangan. Semoga kegiatan ini dapat memberikan manfaat nyata bagi kesehatan warga Dusun Bronjong."
+                        </p>
+                        <p class="text-sm text-gray-600 font-medium">— Mahasiswa KKN PINTAR UNUGIRI</p>
+                    </div>
+
+                    <p class="text-gray-700 leading-relaxed mb-6">
+                        Kepala Dusun Bronjong memberikan apresiasi tinggi kepada mahasiswa KKN PINTAR UNUGIRI. "Kehadiran adik-adik KKN membantu meringankan tugas kader posyandu dan membuat kegiatan lebih tertib. Terima kasih atas partisipasinya," ucapnya.
+                    </p>
+                </div>
+
+                <!-- Activity Highlights -->
+                <div class="mt-10 grid md:grid-cols-3 gap-6">
+                    <div class="bg-green-50 p-6 rounded-xl border border-green-100">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-100 p-2 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-green-800">Pemeriksaan Kesehatan</h3>
+                        </div>
+                        <p class="text-sm text-green-700">Penimbangan, cek tekanan darah, dan pemeriksaan kesehatan umum</p>
+                    </div>
+
+                    <div class="bg-orange-50 p-6 rounded-xl border border-orange-100">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-orange-100 p-2 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-orange-800">Edukasi Kesehatan</h3>
+                        </div>
+                        <p class="text-sm text-orange-700">Penyuluhan pola makan seimbang dan aktivitas fisik</p>
+                    </div>
+
+                    <div class="bg-purple-50 p-6 rounded-xl border border-purple-100">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-100 p-2 rounded-lg mr-3">
+                                <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-semibold text-purple-800">PMT Bergizi</h3>
+                        </div>
+                        <p class="text-sm text-purple-700">Pembagian makanan tambahan untuk meningkatkan gizi warga</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Admin Panel (Only visible for admin) -->
+        <div id="adminPanel" class="hidden bg-white rounded-2xl card-shadow p-8 max-w-4xl mx-auto mt-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Tambah Berita Acara Baru</h2>
+            <form id="newsForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Judul Berita</label>
+                        <input type="text" id="newsTitle" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan judul berita acara">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Tanggal Kegiatan</label>
+                        <input type="date" id="newsDate" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Lokasi</label>
+                        <input type="text" id="newsLocation" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Contoh: Dusun Bronjong, Desa Pejok">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Kategori</label>
+                        <select id="newsCategory" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="kesehatan">Kesehatan</option>
+                            <option value="pendidikan">Pendidikan</option>
+                            <option value="pemberdayaan">Pemberdayaan</option>
+                            <option value="lingkungan">Lingkungan</option>
+                            <option value="sosial">Sosial</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Upload Gambar Kegiatan</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                        <input type="file" id="newsImage" accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+                        <div id="imageUploadArea" onclick="document.getElementById('newsImage').click()" class="cursor-pointer">
+                            <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"/>
+                            </svg>
+                            <p class="text-gray-600 mb-2">Klik untuk upload gambar atau drag & drop</p>
+                            <p class="text-sm text-gray-500">PNG, JPG, JPEG hingga 5MB</p>
+                        </div>
+                        <div id="imagePreview" class="hidden">
+                            <img id="previewImg" class="max-w-full h-48 object-cover rounded-lg mx-auto mb-4" alt="Preview">
+                            <div class="flex justify-center space-x-4">
+                                <button type="button" onclick="removeImage()" class="text-red-500 hover:text-red-700 text-sm">
+                                    <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Hapus Gambar
+                                </button>
+                                <button type="button" onclick="document.getElementById('newsImage').click()" class="text-blue-500 hover:text-blue-700 text-sm">
+                                    <svg class="w-4 h-4 inline mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Ganti Gambar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Isi Berita</label>
+                    <textarea id="newsContent" rows="8" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tulis isi berita acara kegiatan..."></textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="cancelNews()" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        Batal
+                    </button>
+                    <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
+                        Publikasikan Berita
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Admin Controls -->
+        <div class="text-center mt-12">
+            <div id="loginSection" class="space-y-4">
+                <p class="text-gray-600">Untuk menambah berita acara, silakan login sebagai admin</p>
+                <button onclick="showLoginModal()" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+                    Login Admin
+                </button>
+            </div>
+            
+            <div id="adminControls" class="hidden space-y-4">
+                <p class="text-green-600 font-medium">Selamat datang, Admin KKN PINTAR!</p>
+                <div class="space-x-4">
+                    <button onclick="showAddNews()" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                        + Tambah Berita Acara Baru
+                    </button>
+                    <button onclick="logout()" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition-colors">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+            <div class="text-center mb-6">
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-full w-16 h-16 mx-auto mb-4">
+                    <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800">Login Admin</h3>
+                <p class="text-gray-600 mt-2">Masukkan kredensial admin untuk mengelola berita</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Username</label>
+                    <input type="text" id="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan username">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan password">
+                </div>
+                
+
+                
+                <div class="flex space-x-4">
+                    <button type="button" onclick="closeLoginModal()" class="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        Batal
+                    </button>
+                    <button type="submit" class="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-16">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-300">© 2025 KKN PINTAR UNUGIRI Kelompok 30 - Desa Pejok</p>
+            <p class="text-sm text-gray-400 mt-2">Universitas Nahdlatul Ulama Sunan Giri Bojonegoro</p>
+        </div>
+    </footer>
+
+    <script>
+        let isAdmin = false;
+        let newsList = [];
+        let currentFilter = 'all';
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNews();
+            
+            const article = document.querySelector('article');
+            article.style.opacity = '0';
+            article.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                article.style.transition = 'all 0.6s ease-out';
+                article.style.opacity = '1';
+                article.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+        // Filter news by category
+        function filterNews(category) {
+            currentFilter = category;
+            
+            // Update menu active state
+            updateMenuState(category);
+            
+            // Filter news
+            const filteredNews = category === 'all' ? newsList : newsList.filter(news => news.category === category);
+            
+            // Update section title
+            const titles = {
+                'all': 'Berita Terbaru',
+                'kesehatan': 'Berita Kesehatan',
+                'pendidikan': 'Berita Pendidikan',
+                'pemberdayaan': 'Berita Pemberdayaan',
+                'lingkungan': 'Berita Lingkungan',
+                'sosial': 'Berita Sosial'
+            };
+            document.getElementById('sectionTitle').textContent = titles[category];
+            
+            if (filteredNews.length > 0) {
+                // Show news list
+                document.getElementById('newsList').classList.remove('hidden');
+                document.getElementById('categorySection').classList.add('hidden');
+                renderFilteredNews(filteredNews);
+            } else {
+                // Show category section if no news
+                document.getElementById('newsList').classList.add('hidden');
+                showCategorySection(category);
+            }
+            
+            // Close mobile menu
+            document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        function updateMenuState(activeCategory) {
+            // Desktop menu
+            const menuItems = ['all', 'kesehatan', 'pendidikan', 'pemberdayaan', 'lingkungan', 'sosial'];
+            menuItems.forEach(item => {
+                const menuElement = document.getElementById(`menu-${item}`);
+                const mobileMenuElement = document.getElementById(`mobile-menu-${item}`);
+                
+                if (item === activeCategory) {
+                    menuElement.className = 'text-blue-600 font-semibold border-b-2 border-blue-600 pb-1';
+                    mobileMenuElement.className = 'text-blue-600 font-semibold py-2';
+                } else {
+                    menuElement.className = 'text-gray-600 hover:text-blue-600 transition-colors';
+                    mobileMenuElement.className = 'text-gray-600 hover:text-blue-600 py-2';
+                }
+            });
+        }
+
+        function showCategorySection(category) {
+            document.getElementById('categorySection').classList.remove('hidden');
+            
+            // Hide all category sections
+            const sections = ['kesehatanSection', 'pendidikanSection', 'pemberdayaanSection', 'lingkunganSection', 'sosialSection'];
+            sections.forEach(section => {
+                document.getElementById(section).classList.add('hidden');
+            });
+            
+            // Show specific category section
+            if (category !== 'all') {
+                document.getElementById(`${category}Section`).classList.remove('hidden');
+            }
+        }
+
+        function renderFilteredNews(filteredNews) {
+            const container = document.getElementById('newsContainer');
+            
+            if (filteredNews.length === 0) {
+                container.innerHTML = '<p class="text-gray-500 text-center py-8">Belum ada berita yang dipublikasikan untuk kategori ini.</p>';
+                return;
+            }
+            
+            container.innerHTML = filteredNews.map(news => `
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer" onclick="viewNews(${news.id})">
+                    ${news.image ? `
+                        <div class="h-48 overflow-hidden">
+                            <img src="${news.image}" alt="${news.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
+                        </div>
+                    ` : ''}
+                    <div class="p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <div class="flex items-center mb-2">
+                                    <span class="px-3 py-1 text-xs font-medium rounded-full ${getCategoryColor(news.category)}">
+                                        ${getCategoryName(news.category)}
+                                    </span>
+                                    <span class="text-sm text-gray-500 ml-3">${formatDate(news.date)}</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2 line-clamp-2">${news.title}</h3>
+                                <p class="text-gray-600 mb-3">${news.content.substring(0, 150)}...</p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    ${news.location}
+                                </div>
+                            </div>
+                            ${isAdmin ? `<button onclick="deleteNews(${news.id}); event.stopPropagation();" class="text-red-500 hover:text-red-700 p-2">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" clip-rule="evenodd"/>
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginForm').reset();
+        }
+
+        function showAddNews() {
+            document.getElementById('adminPanel').classList.remove('hidden');
+            document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function cancelNews() {
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('newsForm').reset();
+            removeImage(); // Reset image upload
+        }
+
+        function logout() {
+            isAdmin = false;
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('adminControls').classList.add('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'admin' && password === 'kkn2025') {
+                isAdmin = true;
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('adminControls').classList.remove('hidden');
+                closeLoginModal();
+            } else {
+                alert('Username atau password salah!');
+            }
+        });
+
+
+
+        // Image upload handling for news
+        let uploadedImageData = null;
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Check file size (5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Ukuran file terlalu besar! Maksimal 5MB.');
+                return;
+            }
+
+            // Check file type
+            if (!file.type.startsWith('image/')) {
+                alert('File harus berupa gambar (PNG, JPG, JPEG)');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                uploadedImageData = e.target.result;
+                showImagePreview(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showImagePreview(imageSrc) {
+            document.getElementById('imageUploadArea').classList.add('hidden');
+            document.getElementById('imagePreview').classList.remove('hidden');
+            document.getElementById('previewImg').src = imageSrc;
+        }
+
+        function removeImage() {
+            uploadedImageData = null;
+            document.getElementById('imageUploadArea').classList.remove('hidden');
+            document.getElementById('imagePreview').classList.add('hidden');
+            document.getElementById('newsImage').value = '';
+        }
+
+        // News form handler
+        document.getElementById('newsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const title = document.getElementById('newsTitle').value;
+            const date = document.getElementById('newsDate').value;
+            const location = document.getElementById('newsLocation').value;
+            const category = document.getElementById('newsCategory').value;
+            const content = document.getElementById('newsContent').value;
+            
+            if (!title || !date || !location || !content) {
+                alert('Mohon lengkapi semua field!');
+                return;
+            }
+            
+            const newsItem = {
+                id: Date.now(),
+                title: title,
+                date: date,
+                location: location,
+                category: category,
+                content: content,
+                image: uploadedImageData, // Store the uploaded image
+                timestamp: new Date().toLocaleString('id-ID')
+            };
+            
+            newsList.unshift(newsItem);
+            renderNews();
+            cancelNews();
+            alert('Berita berhasil dipublikasikan!');
+        });
+
+        function loadNews() {
+            // Sample news data
+            newsList = [
+                {
+                    id: 1,
+                    title: "Pelaksanaan Intervensi Lapangan Posyandu (ILP) di Dusun Bronjong",
+                    date: "2025-08-13",
+                    location: "Dusun Bronjong, Desa Pejok",
+                    category: "kesehatan",
+                    content: "Kegiatan ILP yang digelar bersama Kelompok 30 KKN PINTAR UNUGIRI berlangsung meriah dan penuh semangat...",
+                    timestamp: "13 Agustus 2025, 10:30"
+                }
+            ];
+            renderNews();
+        }
+
+        function renderNews() {
+            // Use the filter function to render news
+            filterNews(currentFilter);
+        }
+
+        function getCategoryColor(category) {
+            const colors = {
+                kesehatan: 'bg-green-100 text-green-800',
+                pendidikan: 'bg-blue-100 text-blue-800',
+                pemberdayaan: 'bg-purple-100 text-purple-800',
+                lingkungan: 'bg-emerald-100 text-emerald-800',
+                sosial: 'bg-orange-100 text-orange-800'
+            };
+            return colors[category] || 'bg-gray-100 text-gray-800';
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                kesehatan: 'Kesehatan',
+                pendidikan: 'Pendidikan',
+                pemberdayaan: 'Pemberdayaan',
+                lingkungan: 'Lingkungan',
+                sosial: 'Sosial'
+            };
+            return names[category] || 'Umum';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+
+        function viewNews(id) {
+            const news = newsList.find(n => n.id === id);
+            if (news) {
+                alert(`Membuka berita: ${news.title}\n\nFitur detail berita akan segera tersedia!`);
+            }
+        }
+
+        function deleteNews(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus berita ini?')) {
+                newsList = newsList.filter(n => n.id !== id);
+                renderNews();
+            }
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96f5d6d5f6e83d9b',t:'MTc1NTIzMDk5NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
